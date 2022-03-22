@@ -1,9 +1,6 @@
 import numpy as np
 from PIL import Image
 
-
-
-
 def smooth_filter(input_image):
     img = input_image.resize((400,400), Image.ANTIALIAS)
     # convert to numpy array 
