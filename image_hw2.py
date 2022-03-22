@@ -21,7 +21,7 @@ def main():
 
     image = load_image('cover.png')
     #image = Image.fromarray(image)
-    st.title('Filter Selector')
+    st.title('075 MSICE 009 DIP Project Work')
     st.sidebar.title('Sidebar')
 
     menu = ['None','Basic','Spatial','Derivative','Frequency','Logical']
