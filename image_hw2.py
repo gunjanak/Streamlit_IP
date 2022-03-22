@@ -26,7 +26,7 @@ def main():
     st.title('075 MSICE 009 DIP Project Work')
     st.sidebar.title('Sidebar')
 
-    menu = ['None','Basic','Spatial','Derivative','Frequency','Logical']
+    menu = ['None','Basic','Spatial','Derivative','Frequency','Morphology','Logical']
 
     op = st.sidebar.selectbox('Option',menu)
 
@@ -315,6 +315,86 @@ def main():
             col2.header(filters)
             col2.image(output_image[1],width=Output_image)
         
+
+        else:
+            img_convert = image.convert('L')
+            st.image(img_convert,width=Output_image)
+
+    elif op == 'Morphology':
+        img  = st.file_uploader('Upload an image',type=['jpg','png','jpeg'])
+
+        if img is not None:
+            image = Image.open(img)
+            image = image.convert('L')
+            #st.sidebar.text('Original Image')
+            #st.sidebar.image(image,width=200)
+            
+            
+
+            
+        filters = st.sidebar.radio('Morphology',['None','Erosion','Dilation','Opening','Closing','Morphological_gradient'])
+
+        if filters == 'Erosion':
+            
+            Kernel_value = st.sidebar.slider('Kernel',0,50,1)
+            img_convert = image.convert('L')
+            gray_image = img_convert
+            images = Morphology.Erosion(gray_image,Kernel_value)
+            col1, col2 = st.columns(2)
+            col1.header("Original")
+            col1.image(images[0],width=Output_image)
+            col2.header(filters)
+            col2.image(images[1],width=Output_image)
+          
+        elif filters == 'Dilation':
+            Kernel_value = st.sidebar.slider('Kernel',0,50,1)
+            img_convert = image.convert('L')
+            gray_image = img_convert
+            images = Morphology.Dilation(gray_image,Kernel_value)
+            col1, col2 = st.columns(2)
+            col1.header("Original")
+            col1.image(images[0],width=Output_image)
+            col2.header(filters)
+            col2.image(images[1],width=Output_image)
+        
+        elif filters == 'Opening':
+            Kernel_value = st.sidebar.slider('Kernel',0,50,1)
+            img_convert = image.convert('L')
+            gray_image = img_convert
+            images = Morphology.Open(gray_image,Kernel_value)
+            col1, col2 = st.columns(2)
+            col1.header("Original")
+            col1.image(images[0],width=Output_image)
+            col2.header(filters)
+            col2.image(images[1],width=Output_image)
+
+            Pass
+        
+        elif filters == 'Closing':
+            #Dilation followed by Erosion
+            Kernel_value = st.sidebar.slider('Kernel',0,50,1)
+            img_convert = image.convert('L')
+            gray_image = img_convert
+            images = Morphology.Close(gray_image,Kernel_value)
+            col1, col2 = st.columns(2)
+            col1.header("Original")
+            col1.image(images[0],width=Output_image)
+            col2.header(filters)
+            col2.image(images[1],width=Output_image)
+
+        elif filters == 'Morphological_gradient':
+            #It is the difference between dilation and erosion of an image.
+            Kernel_value = st.sidebar.slider('Kernel',0,50,1)
+            img_convert = image.convert('L')
+            gray_image = img_convert
+            images = Morphology.MG(gray_image,Kernel_value)
+            col1, col2 = st.columns(2)
+            col1.header("Original")
+            col1.image(images[0],width=Output_image)
+            col2.header(filters)
+            col2.image(images[1],width=Output_image)
+
+
 
         else:
             img_convert = image.convert('L')
