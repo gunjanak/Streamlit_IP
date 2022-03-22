@@ -33,7 +33,7 @@ def Open(input_image,Kernel_value):
     img = input_image.resize((400,400), Image.ANTIALIAS)
     img_array = np.array(img)
     kernel = np.ones((Kernel_value,Kernel_value),np.uint8)
-    opening = cv2.morphologyEx(img_array,cv.MORPH_OPEN,kernel)
+    opening = cv2.morphologyEx(img_array,cv2.MORPH_OPEN,kernel)
     Output_image = Image.fromarray(opening)  
     images = []
     images.append(img)
@@ -45,7 +45,7 @@ def Close(input_image,Kernel_value):
     img = input_image.resize((400,400), Image.ANTIALIAS)
     img_array = np.array(img)
     kernel = np.ones((Kernel_value,Kernel_value),np.uint8)
-    closing = cv2.morphologyEx(img_array,cv.MORPH_CLOSE,kernel)
+    closing = cv2.morphologyEx(img_array,cv2.MORPH_CLOSE,kernel)
     Output_image = Image.fromarray(closing)  
     images = []
     images.append(img)
@@ -56,7 +56,7 @@ def MG(input_image,Kernel_value):
     img = input_image.resize((400,400), Image.ANTIALIAS)
     img_array = np.array(img)
     kernel = np.ones((Kernel_value,Kernel_value),np.uint8)
-    closing = cv2.morphologyEx(img_array,cv.MORPH_GRADIENT,kernel)
+    closing = cv2.morphologyEx(img_array,cv2.MORPH_GRADIENT,kernel)
     Output_image = Image.fromarray(closing)  
     images = []
     images.append(img)
