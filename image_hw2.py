@@ -368,7 +368,7 @@ def main():
             col2.header(filters)
             col2.image(images[1],width=Output_image)
 
-            Pass
+         
         
         elif filters == 'Closing':
             #Dilation followed by Erosion
