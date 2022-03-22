@@ -10,6 +10,7 @@ import Basic
 
 
 Output_image = 350
+newsize = (400, 400)
 
 
 def main():
@@ -44,7 +45,7 @@ def main():
         if filters == 'Bit Plane':
             img_convert = image.convert('L')
             gray_image = img_convert
-            slide = st.sidebar.slider('Bit',0,8,1)
+            slide = st.sidebar.slider('Bit',1,8,1)
             output_image = Basic.Bit_Plane(gray_image,slide)
             col1, col2 = st.columns(2)
             col1.header("Original")
@@ -107,11 +108,10 @@ def main():
             col2.header(filters)
             col2.image(output_image[1],width=Output_image)
 
-
-
-
-
-
+        elif filters == "None":
+           
+           image = image.resize(newsize)
+           st.image(image,width=Output_image)
 
 
     elif op == 'Spatial':
@@ -120,8 +120,7 @@ def main():
         if img is not None:
             image = Image.open(img)
             image = image.convert('L')
-            #st.sidebar.text('Original Image')
-            #st.sidebar.image(image,width=200)
+    
         
         filters = st.sidebar.radio('Spatial',['None','Smooth','Sharp','Min','Max','Median','High Boost'])
         if filters == 'Smooth':
@@ -184,6 +183,12 @@ def main():
             col2.header(filters)
             col2.image(output_image[1],width=Output_image)
 
+        elif filters == "None":
+            image = image.resize(newsize)
+           
+            st.image(image,width=Output_image)
+
+
 
 
     elif op == 'Derivative':
@@ -192,8 +197,7 @@ def main():
         if img is not None:
             image = Image.open(img)
             image = image.convert('L')
-            #st.sidebar.text('Original Image')
-            #st.sidebar.image(image,width=200)
+   
         
         filters = st.sidebar.radio('Derivative',['None','Prewitt_horizontal','Prewitt_vertical',
         'Sobel_horizontal','Sobel_vertical','Sobel 45','Sobel 225',
@@ -268,10 +272,9 @@ def main():
             col2.header(filters)
             col2.image(output_image[1],width=Output_image)
 
-
-
-
-        
+        elif filters == "None":
+            image = image.resize(newsize)
+            st.image(image,width=Output_image) 
 
 
     elif op == 'Frequency':
@@ -280,8 +283,7 @@ def main():
         if img is not None:
             image = Image.open(img)
             image = image.convert('L')
-            #st.sidebar.text('Original Image')
-            #st.sidebar.image(image,width=200)
+     
         
         filters = st.sidebar.radio('Frequency',['None','Frequency','Low Pass','High Pass'])
 
@@ -318,6 +320,7 @@ def main():
 
         else:
             img_convert = image.convert('L')
+            img_convert = img_convert.resize(newsize)
             st.image(img_convert,width=Output_image)
 
     elif op == 'Morphology':
@@ -326,12 +329,7 @@ def main():
         if img is not None:
             image = Image.open(img)
             image = image.convert('L')
-            #st.sidebar.text('Original Image')
-            #st.sidebar.image(image,width=200)
-            
-            
-
-            
+ 
         filters = st.sidebar.radio('Morphology',['None','Erosion','Dilation','Opening','Closing','Morphological_gradient'])
 
         if filters == 'Erosion':
@@ -398,6 +396,7 @@ def main():
 
         else:
             img_convert = image.convert('L')
+            img_convert = img_convert.resize(newsize)
             st.image(img_convert,width=Output_image)
         
 
@@ -460,6 +459,20 @@ def main():
                 col2.image(images[1],width=200)
                 col3.header(filters)
                 col3.image(images[2],width=200)
+            
+            elif filters == 'None':
+                img_convert1 = image1.convert('L')
+                img_convert2 = image2.convert('L')
+                img_convert1 = img_convert1.resize(newsize)
+                img_convert2 = img_convert2.resize(newsize)
+                col1, col2  = st.columns(2)
+                col1.header("Original 1")
+                col1.image(img_convert1,width=200)
+                col2.header("Original 2")
+                col2.image(img_convert2,width=200)
+                
+
+
 
 
 
