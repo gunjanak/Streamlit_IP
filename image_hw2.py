@@ -479,6 +479,18 @@ def main():
         else:
             img_convert = image.convert('L')
             st.image(img_convert,width=Output_image)
+
+    elif op == 'None':
+        img  = st.file_uploader('Upload an image',type=['jpg','png','jpeg'])
+
+        if img is not None:
+            image = Image.open(img)
+            image = image.convert('L')
+            img_convert = image.convert('L')
+            img_convert = img_convert.resize(newsize)
+            st.image(img_convert,width=Output_image)
+           
+
          
 
 
