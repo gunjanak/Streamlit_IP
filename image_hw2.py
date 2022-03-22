@@ -1,6 +1,5 @@
 import streamlit as st
 from PIL import Image
-import Morphology
 import Logic
 import Frequency
 import Derivative
