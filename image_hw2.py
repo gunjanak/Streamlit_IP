@@ -24,7 +24,7 @@ def main():
 
     image = load_image('cover.png')
     #image = Image.fromarray(image)
-    st.title('075 MSICE 009 DIP Project Work')
+    st.title('075 MSICE 009 Digital Image Processing Project Work')
     st.sidebar.title('Sidebar')
 
     menu = ['None','Basic','Spatial','Derivative','Frequency','Morphology','Logical']
