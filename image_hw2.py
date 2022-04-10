@@ -24,7 +24,8 @@ def main():
 
     image = load_image('cover.png')
     #image = Image.fromarray(image)
-    st.title('075 MSICE 009 Digital Image Processing Project Work')
+    st.title('075 MSICE 009 Digital')
+    st.title('Image Processing Project Work')
     st.sidebar.title('Sidebar')
 
     menu = ['None','Basic','Spatial','Derivative','Frequency','Morphology','Logical']
@@ -515,6 +516,7 @@ def main():
             img_convert = image.convert('L')
             st.image(img_convert,width=Output_image)
 
+   
     elif op == 'None':
         img  = st.file_uploader('Upload an image',type=['jpg','png','jpeg'])
 
