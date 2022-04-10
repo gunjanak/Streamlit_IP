@@ -201,7 +201,8 @@ def main():
         
         filters = st.sidebar.radio('Derivative',['None','Prewitt_horizontal','Prewitt_vertical',
         'Sobel_horizontal','Sobel_vertical','Sobel 45','Sobel 225',
-        'Laplacian'])
+        'Laplacian','Parabolic','Elliptical','Hyperbolic'])
+
 
         if filters == 'Prewitt_horizontal':
             img_convert = image.convert('L')
@@ -262,6 +263,7 @@ def main():
             col1.image(output_image[0],width=Output_image)
             col2.header(filters)
             col2.image(output_image[1],width=Output_image)
+
         elif filters == 'Laplacian':
             img_convert = image.convert('L')
             gray_image = img_convert
@@ -271,6 +273,39 @@ def main():
             col1.image(output_image[0],width=Output_image)
             col2.header(filters)
             col2.image(output_image[1],width=Output_image)
+
+        elif filters == 'Elliptical':
+            img_convert = image.convert('L')
+            gray_image = img_convert
+            output_image = Derivative.Elliptical_filter(gray_image)
+            col1, col2 = st.columns(2)
+            col1.header("Original")
+            col1.image(output_image[0],width=Output_image)
+            col2.header(filters)
+            col2.image(output_image[1],width=Output_image)
+
+        elif filters == 'Parabolic':
+            img_convert = image.convert('L')
+            gray_image = img_convert
+            output_image = Derivative.Parabolic_filter(gray_image)
+            col1, col2 = st.columns(2)
+            col1.header("Original")
+            col1.image(output_image[0],width=Output_image)
+            col2.header(filters)
+            col2.image(output_image[1],width=Output_image)
+
+       
+
+        elif filters == 'Hyperbolic':
+            img_convert = image.convert('L')
+            gray_image = img_convert
+            output_image = Derivative.Hyperbolic_filter(gray_image)
+            col1, col2 = st.columns(2)
+            col1.header("Original")
+            col1.image(output_image[0],width=Output_image)
+            col2.header(filters)
+            col2.image(output_image[1],width=Output_image)
+
 
         elif filters == "None":
             image = image.resize(newsize)
